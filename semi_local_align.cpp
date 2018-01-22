@@ -51,26 +51,23 @@ pair<int, int> get_mapped_range_in_genome(){
         It sufficies to loop back to when someone get updated from itself
     */
     pair<int, int> var = mp(max_i, gene.length());
-    cout <<"history began" << endl;
+    // cout <<"history began" << endl;
     while(var.se != 0){
         /*
         log the history for debug
         */
-        cout << var.fi <<" "<<var.se << endl;
+        // cout << var.fi <<" "<<var.se << endl;
 
         var = history[var.fi][var.se];
     }
-    cout << var.fi <<" "<<var.se << endl;
-    cout << "history ended" << endl;
+    // cout << var.fi <<" "<<var.se << endl;
+    // cout << "history ended" << endl;
     return mp(var.fi+1, max_i);
 }
 
 int main(int argc, const char**argv){
-    if(argc < 3)
-        cout << "Too few arguments." << endl;
     /*input format: genome, gene*/    
-    genome = argv[1];
-    gene = argv[2];
+    cin >> genome >> gene;
     /*check if the limits are not reached*/
     if(genome.length() > MAX_GENOME_LENGTH)
         cout << "MAX_GENOME_LENGTH is exceeded." << endl;
@@ -100,7 +97,7 @@ int main(int argc, const char**argv){
         score[0][i] = GAP_COST*i;
         history[0][i] = mp(0, i-1);
     }
-    /*we are going to fill dynamic programming here*/
+    /*we are going to fill dynamic programming array here*/
     
     for(int i = 1; i<genome.length()+1; i++){
         for(int j = 1; j<gene.length()+1; j++){
@@ -148,5 +145,8 @@ int main(int argc, const char**argv){
             similiar to given gene
     */
     pair<int, int> ans = get_mapped_range_in_genome();
-    cout << ans.fi << " " << ans.se << endl;
+    cout <<"Index "<< ans.fi << " to " << ans.se <<
+    " of the genome with score " << score[ans.se][gene.length()]<< endl;
+    cout << "The found string is :" << endl;
+    cout << genome.substr(ans.fi-1, ans.se-ans.fi+1) << endl; 
 }
