@@ -16,9 +16,10 @@ const int INF = int(1e9);
 const int GAP_COST = -1;
 const int DIF_VAL = -1;
 const int EQ_VAL = 1;
-/*int score[i][j] is the best score of mapping 
-a part starting with arbitrary genome[j]...genome[i]
- with the part in gene[0]...gene[j]
+/*
+    score[i][j] is the best score of mapping 
+    a part starting with arbitrary genome[j]...genome[i-1]
+    with the part in gene[1]...gene[j-1]
 */
 int score[MAX_GENOME_LENGTH][MAX_GENE_LENGTH];
 pair<int, int> history[MAX_GENOME_LENGTH][MAX_GENE_LENGTH];
@@ -42,14 +43,14 @@ pair<int, int> get_mapped_range_in_genome(){
         we handled dropping a part from the first of genome in code before
         but now we handle dropping a part from the end of genome
     */
-    for(int i = 0; i<genome.length(); i++)
-        if(score[i][gene.length()-1]>score[max_i][gene.length()-1])
+    for(int i = 0; i<genome.length()+1; i++)
+        if(score[i][gene.length()]>score[max_i][gene.length()])
             max_i = i;
     /*      but what is the first of the mapped region?
         we will use history part of our program to remebmer this.
         It sufficies to loop back to when someone get updated from itself
     */
-    pair<int, int> var = mp(max_i, gene.length()-1);
+    pair<int, int> var = mp(max_i, gene.length());
     cout <<"history began" << endl;
     while(var.se != 0){
         /*
@@ -61,7 +62,7 @@ pair<int, int> get_mapped_range_in_genome(){
     }
     cout << var.fi <<" "<<var.se << endl;
     cout << "history ended" << endl;
-    return mp(var.fi, max_i);
+    return mp(var.fi+1, max_i);
 }
 
 int main(int argc, const char**argv){
@@ -88,12 +89,21 @@ int main(int argc, const char**argv){
     }
 
     /* initialize some variables, it seems it sufficies to fill
-       just the first cell*/
+       just the first row and first column*/
     score[0][0] = 0;
     history[0][0] = mp(0, 0);
+    for(int i = 0; i<genome.length()+1; i++){
+        score[i][0] = 0;
+        history[i][0] = mp(i, 0);
+    }
+    for(int i = 1; i<gene.length()+1; i++){
+        score[0][i] = GAP_COST*i;
+        history[0][i] = mp(0, i-1);
+    }
     /*we are going to fill dynamic programming here*/
-    for(int i = 0; i<genome.length(); i++){
-        for(int j = 0; j<gene.length(); j++){
+    
+    for(int i = 1; i<genome.length()+1; i++){
+        for(int j = 1; j<gene.length()+1; j++){
             /*
                 here we check making GAPS, just making a gap and
                 then continue, this can be good in many cases but we
@@ -108,13 +118,13 @@ int main(int argc, const char**argv){
             }
             /*
             if we are going to map these two character together
-            if genome[i] == gene[j] so this can get EQ_VAL and then dp[i-1][j-1]
-            if genome[i]!= gene[j] so this can get a DIF_VAL penalty and then dp[i-1][j-1]
+            if genome[i-1] == gene[j-1] so this can get EQ_VAL and then dp[i-1][j-1]
+            if genome[i-1]!= gene[j-1] so this can get a DIF_VAL penalty and then dp[i-1][j-1]
             maybe you ask a GAP is better but it depends on DIF_VAL and EQ_VAL for example
-            if DIF_VAL is 0 or small it seems better to map the unmatching characters instead of 
+            if DIF_VAL is or small it seems better to map the unmatching characters instead of 
             just making two gaps
             */
-            if(genome[i] == gene[j]){
+            if(genome[i-1] == gene[j-1]){
                 if(score[i][j] < get_dp(i-1, j-1) + EQ_VAL){
                     score[i][j] = get_dp(i-1, j-1) + EQ_VAL;
                     history[i][j] = mp(i-1, j-1);
@@ -124,15 +134,6 @@ int main(int argc, const char**argv){
                     score[i][j] = get_dp(i-1, j-1)+DIF_VAL;
                     history[i][j] = mp(i-1, j-1);
                 }
-            }
-            /*
-            we can ignore first part of 
-            genome for matching if expensive. that's it, we can drop a part of the genome from
-            the beginning and then start the aligning with no penalty for dropping that part:) 
-            */
-            if(j==0 && score[i][j]<0){
-                score[i][j] = 0;
-                history[i][j] = mp(i, j);
             }
         }
     }
