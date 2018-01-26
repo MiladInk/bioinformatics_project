@@ -1,4 +1,4 @@
-all:  ../Data/Trees/*.tree Neighbour_Joining UPGMA semi_local_align gene_finder gene_distance_maker global_align ../Data/Dists/*.csv ../Data/Genes/*.fasta
+all:  ../Data/Trees/*.png ../Data/Trees/*.trees Neighbour_Joining UPGMA semi_local_align gene_finder gene_distance_maker global_align ../Data/Dists/*.csv ../Data/Genes/*.fasta
 
 ../Data/Dists/*.csv: gene_distance_maker ../Data/Genes/*.fasta
 	./gene_distance_maker
@@ -19,8 +19,10 @@ UPGMA: UPGMA.cpp
 	g++ --std=c++11 UPGMA.cpp -o UPGMA
 Neighbour_Joining: Neighbour_Joining.cpp
 	g++ --std=c++11 Neighbour_Joining.cpp -o Neighbour_Joining
-../Data/Trees/*.tree: ../Data/Dists/*.csv
+../Data/Trees/*.png: ../Data/Dists/*.csv tree_drawer.py
 	chmod +x tree_making.sh
 	./tree_making.sh
-	
+../Data/Trees/*.trees: ../Data/Dists/*.csv tree_drawer.py
+	chmod +x tree_making.sh
+	./tree_making.sh
 
