@@ -11,5 +11,4 @@ for filename in ../Data/Dists/*.csv; do
      path="../Data/Trees/"$name"_NJ.png\n"
      { ./Neighbour_Joining < "$filename";echo $path; } | ./tree_drawer.py 
      ./Neighbour_Joining < "$filename" >> ../Data/Trees/NJ.trees
-     
 done
