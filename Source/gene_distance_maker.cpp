@@ -6,7 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <sys/wait.h>
-#define MAX_GENE_LENGTH 20000 + 10
+#define MAX_GENE_LENGTH 30000 + 10
 #define fi first
 #define se second
 #define pb push_back
@@ -47,16 +47,16 @@ int main()
         ebolaes.pb(ebola_sarde);
     }
 
-    // for (auto ebola : ebolaes)
-    // {
-    //     cout << "name is " << ebola.name_sarde << endl;
-    //     cout << "I have " << ebola.genes.size() << " genes.\n";
-    //     for (auto gene : ebola.genes)
-    //     {
-    //         cout << gene.se.length() << " ";
-    //     }
-    //     cout << endl;
-    // }
+    for (auto ebola : ebolaes)
+    {
+        cout << "name is " << ebola.name_sarde << endl;
+        cout << "I have " << ebola.genes.size() << " genes.\n";
+        for (auto gene : ebola.genes)
+        {
+            cout << gene.se.length() << " ";
+        }
+        cout << endl;
+    }
     /*
         we are going to make the distance matrix for the 7 genes now
     */

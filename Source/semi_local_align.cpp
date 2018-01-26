@@ -10,9 +10,8 @@ using namespace std;
 string genome; //here we will store the refrence genome
 string gene;   //here we will store the gene we are going to find in the refrence genome
 bool verbose = false;
-const int MAX_GENOME_LENGTH = 20000 + 10;
+const int MAX_GENOME_LENGTH = 30000 + 10;
 const int MAX_GENE_LENGTH = 10000 + 10;
-const int INF = int(1e9);
 const int GAP_COST = -1;
 const int DIF_VAL = -1;
 const int EQ_VAL = 1;
@@ -31,8 +30,6 @@ pair<int, int> history[MAX_GENOME_LENGTH][MAX_GENE_LENGTH];
 */
 int get_dp(int i, int j)
 {
-    if (i < 0 || j < 0)
-        return -1 * INF;
     return score[i][j];
 }
 
@@ -96,7 +93,7 @@ int main(int argc, const char **argv)
        just the first row and first column*/
     score[0][0] = 0;
     history[0][0] = mp(0, 0);
-    for (int i = 0; i < genome.length() + 1; i++)
+    for (int i = 1; i < genome.length() + 1; i++)
     {
         score[i][0] = 0;
         history[i][0] = mp(i, 0);

@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <sys/wait.h>
 #include <signal.h>
-#define MAX_GENE_LENGTH 20000 + 10
+#define MAX_GENE_LENGTH 30000 + 10
 #define fi first
 #define se second
 #define pb push_back

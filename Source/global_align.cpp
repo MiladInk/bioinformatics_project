@@ -10,7 +10,7 @@ using namespace std;
 string genome_1; //here we will store the refrence genome
 string genome_2; //here we will store the gene we are going to find in the refrence genome
 bool verbose = false;
-const int MAX_GENOME_LENGTH = 20000 + 10;
+const int MAX_GENOME_LENGTH = 30000 + 10;
 const int INF = int(1e9);
 const int GAP_COST = -1;
 const int DIF_VAL = -1;
@@ -29,7 +29,7 @@ int edit[MAX_GENOME_LENGTH][MAX_GENOME_LENGTH];
 int get_dp(int i, int j)
 {
     if (i < 0 || j < 0)
-        return INF;
+        return -1 * INF;
     return edit[i][j];
 }
 

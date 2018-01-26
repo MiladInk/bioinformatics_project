@@ -5,7 +5,7 @@ all:  ../Data/Trees/*.tree Neighbour_Joining UPGMA semi_local_align gene_finder 
 ../Data/Genes/*.fasta: gene_finder ../Data/Genomes/*.fasta
 	./gene_finder
 global_align: global_align.cpp
-	g++ --std=c++11 global_align.cpp -o global_align
+	g++ --std=c++11 global_align.cpp -o  global_align
 
 gene_finder: gene_finder.cpp semi_local_align
 	g++ --std=c++11 gene_finder.cpp -o gene_finder
