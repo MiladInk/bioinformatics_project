@@ -154,7 +154,7 @@ int main()
             cout << name[pairs[0].second] << ", ";
             cout << name[pairs[1].second] << ", ";
             cout << name[pairs[2].second];
-            cout << ")";
+            cout << ");";
             cout << endl;
             break;
         }

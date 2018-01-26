@@ -1,0 +1,15 @@
+#!/usr/bin/Rscript
+library(ape)
+#make the consensus tree and store it:)
+png("../Data/Trees/NJ.png")
+trees <- read.tree("../Data/Trees/NJ.trees")
+c_tree <- consensus(trees, p = 0.5)
+plot(c_tree)
+dev.off()
+
+png("../Data/Trees/UPGMA.png")
+trees <- read.tree("../Data/Trees/UPGMA.trees")
+c_tree <- consensus(trees, p = 0.5)
+plot(c_tree)
+dev.off()
+#quit(save = "yes", status = 0, runLast = TRUE)

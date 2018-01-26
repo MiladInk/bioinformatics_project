@@ -1,7 +1,7 @@
-(((Bundibugyo,TaiForest),Zaire), Reston, Sudan)
-(((TaiForest,Bundibugyo),Zaire), Sudan, Reston)
-(((TaiForest,Bundibugyo),Zaire), Sudan, Reston)
-(((TaiForest,Bundibugyo),Zaire), Sudan, Reston)
-(((Zaire,TaiForest),Sudan), Reston, Bundibugyo)
-(((Bundibugyo,TaiForest),Zaire), Sudan, Reston)
-(((Reston,Sudan),Zaire), TaiForest, Bundibugyo)
+(((Bundibugyo,TaiForest),Zaire), Reston, Sudan);
+(((TaiForest,Bundibugyo),Zaire), Sudan, Reston);
+(((TaiForest,Bundibugyo),Zaire), Sudan, Reston);
+(((TaiForest,Bundibugyo),Zaire), Sudan, Reston);
+(((Zaire,TaiForest),Sudan), Reston, Bundibugyo);
+(((Bundibugyo,TaiForest),Zaire), Sudan, Reston);
+(((Reston,Sudan),Zaire), TaiForest, Bundibugyo);

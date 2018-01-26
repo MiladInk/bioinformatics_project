@@ -62,7 +62,7 @@ int main()
         for (auto v1 : vertices)
             sim[new_node][v1] = sim[v1][new_node] = (sim[max_v.fi][v1] * num[max_v.fi] + sim[max_v.se][v1] * num[max_v.se]) / (1.0 * (num[max_v.fi] + num[max_v.se]));
     }
-    cout << name[avail_node - 1] << endl;
+    cout << name[avail_node - 1] << ";" << endl;
     /*printing section*/
     set<int> leaves;
 }
