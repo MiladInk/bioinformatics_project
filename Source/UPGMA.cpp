@@ -31,7 +31,10 @@ int main()
     //get the similarity matrix
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
+        {
             cin >> sim[i][j];
+            sim[i][j] = -1 * sim[i][j];
+        }
 
     //loop until the number of vertices remained is just one
     while (vertices.size() > 1)

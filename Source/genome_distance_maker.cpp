@@ -127,4 +127,16 @@ int main()
         fout << endl;
     }
     fout.close();
+
+    file_name = "../Data/Dists/length.txt";
+    fout.open(file_name.c_str());
+    fout << 6 << endl;
+    for (int j = 0; j < 5; j++)
+        fout << names[j] << endl;
+    fout << "Marburg" << endl;
+    for (int i_1 = 0; i_1 < 6; i_1++)
+    {
+        fout << genomes[i_1].length() << endl;
+    }
+    fout.close();
 }

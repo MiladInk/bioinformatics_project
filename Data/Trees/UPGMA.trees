@@ -1,7 +1,7 @@
-((((Bundibugyo,Zaire),Sudan),Reston),TaiForest);
-((((Reston,Sudan),Bundibugyo),Zaire),TaiForest);
-(((Bundibugyo,Sudan),(Reston,TaiForest)),Zaire);
-((((Bundibugyo,Reston),Sudan),Zaire),TaiForest);
-((((Bundibugyo,TaiForest),Sudan),Reston),Zaire);
-(((Bundibugyo,Reston),(Sudan,TaiForest)),Zaire);
-((((Bundibugyo,Reston),TaiForest),Zaire),Sudan);
+((((Bundibugyo,TaiForest),Reston),Sudan),Zaire);
+((((Bundibugyo,TaiForest),Zaire),Sudan),Reston);
+((((Bundibugyo,TaiForest),Zaire),Sudan),Reston);
+(((TaiForest,Zaire),Bundibugyo),(Reston,Sudan));
+((((TaiForest,Zaire),Reston),Sudan),Bundibugyo);
+(((Bundibugyo,TaiForest),Zaire),(Reston,Sudan));
+((((Reston,Sudan),Zaire),TaiForest),Bundibugyo);
