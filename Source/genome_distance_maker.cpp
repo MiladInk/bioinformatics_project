@@ -20,10 +20,11 @@ string names[5] = {"Reston", "Sudan", "TaiForest", "Zaire", "Bundibugyo"};
 vector<string> genomes;
 int main()
 {
+    string inp, file_name;
     ifstream fin_genomes;
     for (auto name : names)
     {
-        string file_name = "../Data/Genomes/" + name + "_genome.fasta";
+        file_name = "../Data/Genomes/" + name + "_genome.fasta";
         fin_genomes.open(file_name);
         string inp;
         while (fin_genomes >> inp)
@@ -37,15 +38,28 @@ int main()
         }
         fin_genomes.close();
     }
+    file_name = "../Data/Marburg_genome.fasta";
+    fin_genomes.open(file_name);
+    while (fin_genomes >> inp)
+    {
+        if (inp[0] == '>')
+        {
+            genomes.pb("");
+            continue;
+        }
+        genomes.back() = genomes.back() + inp;
+    }
+    fin_genomes.close();
     /*
         we are going to make the distance matrix for the 7 genes now
     */
-    int dist[5][5];
+    int dist[6][6];
     int pipes[2][2];
     char *global_align[] = {"global_align", 0};
-    for (int i_1 = 0; i_1 < 5; i_1++)
+    for (int i_1 = 0; i_1 < 6; i_1++)
         for (int i_2 = 0; i_2 <= i_1; i_2++)
         {
+            cout << "gene" << i_1 << " and gene" << i_2 << endl;
             string s1 = genomes[i_1];
             string s2 = genomes[i_2];
             //cout << s1.substr(0, 10) << " .vs " << s2.substr(0, 10) << endl;
@@ -82,7 +96,7 @@ int main()
         }
 
     ofstream fout;
-    string file_name = "../Data/Dists/genome.csv";
+    file_name = "../Data/Dists/genome.csv";
     fout.open(file_name.c_str());
     fout << 5 << endl;
     for (int j = 0; j < 5; j++)
@@ -96,4 +110,21 @@ int main()
         }
         fout << endl;
     }
+    fout.close();
+
+    file_name = "../Data/Dists/all_and_marburg.csv";
+    fout.open(file_name.c_str());
+    fout << 6 << endl;
+    for (int j = 0; j < 5; j++)
+        fout << names[j] << endl;
+    fout << "Marburg" << endl;
+    for (int i_1 = 0; i_1 < 6; i_1++)
+    {
+        for (int i_2 = 0; i_2 < 6; i_2++)
+        {
+            fout << dist[i_1][i_2] << " ";
+        }
+        fout << endl;
+    }
+    fout.close();
 }
